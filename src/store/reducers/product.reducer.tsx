@@ -22,6 +22,11 @@ const ProductReducer = (state=initialState, action:{type:string; payload: Produc
                 ...state,
                 bestProducts: payload
             }
+        case FETCH_TOP_PRODUCTS:
+            return{
+                ...state,
+                topProducts: payload
+            }
         default:
             return state;
     }

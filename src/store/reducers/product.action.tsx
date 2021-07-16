@@ -13,6 +13,6 @@ import {
   }
 
   export const fetchTopProducts = ()=> async(dispatch:(arg:{type:string; payload: Product[]})=> void) =>{
-      const products = ProductService.getTopProducts()
-      dispatch({type:FETCH_BEST_PRODUCTS, payload: products})
+      const products = await ProductService.getTopProducts()
+      dispatch({type:FETCH_TOP_PRODUCTS, payload: products})
   }
