@@ -27,3 +27,27 @@ export const fetchTopProducts =
     const products = await ProductService.getTopProducts();
     dispatch({ type: FETCH_TOP_PRODUCTS, payload: products });
   };
+
+export const updateFilter = (payload: string, type = "productCategory")=> async (dispatch:(arg0:{type:string; payload: any})=>void)=>{
+  dispatch({
+    type: UPDATE_FILTER,
+    payload: payload
+  }); 
+  
+  const products: Product[] = [...ProductService.getAllProducts()];
+  let filteredData: Product[] = [];
+  
+  if (payload !== 'All') {
+    products.map((prod:any): void=>{
+      if (prod[type] === payload) {
+        filteredData.push(prod);
+      } 
+    })
+  }else{
+    filteredData = products
+  }
+  dispatch({
+    type: FETCH_ALL_PRODUCTS,
+    payload: filteredData
+  })
+}
